@@ -96,7 +96,7 @@ libfaceid library supports several models for each step of the Face Recognition 
            unidecode==0.4.20
            pyttsx3==2.7
            gtts==2.0.3
-           speechrecognition==3.8.1
+      
 
            Additional items to install: 
            On Windows, install pypiwin32 using "pip install pypiwin32==223"
@@ -105,7 +105,6 @@ libfaceid library supports several models for each step of the Face Recognition 
                sudo apt-get install python-espeak
                sudo apt-get install portaudio19-dev
                pip3 install pyaudio
-               [Microphone Setup on RPI](https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/)
 
 ### Quickstart (Dummy Guide):
 
