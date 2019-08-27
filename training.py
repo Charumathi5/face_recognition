@@ -43,16 +43,7 @@ def train_recognition(model_detector, model_encoder, model_classifier, verify):
     face_encoder = FaceEncoder(model=model_encoder, path=INPUT_DIR_MODEL_ENCODING, path_training=INPUT_DIR_MODEL_TRAINING, training=True)
     face_encoder.train(face_detector, path_dataset=INPUT_DIR_DATASET, verify=verify, classifier=model_classifier)
     #print("train_recognition completed")
-    
-# generate audio samples for image datasets using text to speech synthesizer
-def train_audiosets(model_speech_synthesizer):
 
-    ensure_directory(OUTPUT_DIR_AUDIOSET)
-    from libfaceid.speech_synthesizer import SpeechSynthesizer # lazy loading
-    speech_synthesizer = SpeechSynthesizer(model=model_speech_synthesizer, path=INPUT_DIR_MODEL_SYNTHESIS, path_output=OUTPUT_DIR_AUDIOSET)
-    speech_synthesizer.synthesize_datasets(INPUT_DIR_DATASET)
-    #speech_synthesizer.synthesize_name("libfaceid")
-    #speech_synthesizer.synthesize("Hello World", "World.wav")
 
 
 def run():
