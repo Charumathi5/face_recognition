@@ -372,24 +372,6 @@ In addition to these guidelines, the face recognition solution should provide a 
 - When a person is identified to be part of the database, we play the corresponding audio file "PersonX.wav". 
 
 
-
-# Performance Optimizations:
-
-Speed and accuracy is often a trade-off. Performance can be optimized depending on your specific use-case and system requirements. Some models are optimized for speed while others are optimized for accuracy. Be sure to test all the provided models to determine the appropriate model for your specific use-case, target platform (CPU, GPU or embedded) and specific requirements. Below are additional suggestions to optimize performance.
-
-### Speed
-- Reduce the frame size for face detection.
-- Perform face recognition every X frames only
-- Use threading in reading camera source frames or in processing the camera frames.
-- Update the library and configure the parameters directly.
-
-### Accuracy
-- Add more datasets if possible (ex. do data augmentation). More images per person will often result to higher accuracy.
-- Add face alignment if faces in the datasets are not aligned or when faces may be unaligned in actual deployment.
-- Update the library and configure the parameters directly.
-
-
-
 # References:
 
 Below are links to valuable resoures. Special thanks to all of these guys for sharing their work on Face Recognition. Without them, learning Face Recognition would be difficult.
