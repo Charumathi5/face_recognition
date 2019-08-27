@@ -1,107 +1,19 @@
-# libfaceid, a Face Recognition library for everybody
-
-<p>
-    <b> FaceRecognition Made Easy.</b> libfaceid is a Python library for facial recognition that seamlessly integrates multiple face detection and face recognition models. 
-</p>
-<p>
-    <b> From Zero to Hero.</b> Learn the basics of Face Recognition and experiment with different models.
-    libfaceid enables beginners to learn various models and simplifies prototyping of facial recognition solutions by providing a comprehensive list of models to choose from.
-    Multiple models for detection and encoding/embedding including classification models are supported from the basic models (Haar Cascades + LBPH) to the more advanced models (MTCNN + FaceNet).
-    The models are seamlessly integrated so that user can mix and match models. Each detector model has been made compatible with each embedding model to abstract you from the differences.
-    Each model differs in speed, accuracy, memory requirements and 3rd-party library dependencies.
-    This enables users to easily experiment with various solutions appropriate for their specific use cases and system requirements.
-    In addition, face liveness detection models are also provided for anti-face spoofing attacks (photo-based, video-based, 3d-mask-based attacks).
-</p>
-<p>
-    <b> Awesome Design.</b> The library is designed so that it is easy to use, modular and robust.
-    Selection of model is done via the constructors while the expose function is simply detect() or estimate() making usage very easy.
-    The files are organized into modules so it is very intuitive to understand and debug.
-    The robust design allows supporting new models in the future to be very straightforward.
-</p> 
-<p>
-    <b> Extra Cool Features.</b> The library contains models for predicting your age, gender, emotion and facial landmarks.
-    It also contains TTS text-to-speech (speech synthesizer) and STT speech-to-text (speech recognition) models for voice-enabled and voice-activated capabilities.
-    Voice-enabled feature allows system to speak your name after recognizing your face.
-    Voice-activated feature allows system to listen for a specified word or phrase to trigger the system to do something (wake-word/trigger-word/hotword detection).
-    Web app is also supported for some test applications using Flask so you would be able to view the video capture remotely on another computer in the same network via a web browser. 
-</p>
-
-
-![](https://github.com/richmondu/libfaceid/blob/master/templates/teaser/libfaceid.jpg)
-![](https://github.com/richmondu/libfaceid/blob/master/templates/teaser/libfaceid2.jpg)
-![](https://github.com/richmondu/libfaceid/blob/master/templates/teaser/libfaceid3.jpg)
-![](https://github.com/richmondu/libfaceid/blob/master/templates/teaser/libfaceid4.jpg)
-![](https://github.com/richmondu/libfaceid/blob/master/templates/teaser/libfaceid5.jpg)
-
-
-# News:
-
-| Date | Milestones |
-| --- | --- |
-| 2018, Dec 29 | Integrated [Colorspace histogram concatenation](https://github.com/ee09115/spoofing_detection) for anti-face spoofing (face liveness detection) |
-| 2018, Dec 26 | Integrated Google Cloud's STT speech-to-text (speech recognition) for voice-activated capability |
-| 2018, Dec 19 | Integrated Google's [Tacotron](https://github.com/keithito/tacotron) TTS text-to-speech (speech synthesis) for voice-enabled capability |
-| 2018, Dec 13 | Integrated Google's [FaceNet](https://github.com/davidsandberg/facenet) face embedding |
-| 2018, Nov 30 | Committed libfaceid to Github |
-
-
-# Background:
-
-<p>
-With Apple incorporating face recognition technology in iPhone X last year, 2017 
-and with China implementing nation-wide wide-spread surveillance for social credit system in a grand scale, 
-Face Recognition has become one of the most popular technologies where Deep Learning is used. 
-Face recognition is used for identity authentication, access control, passport verification in airports, 
-law enforcement, forensic investigations, social media platforms, disease diagnosis, police surveillance, 
-casino watchlists and many more.
-</p>
-
-<p>
-Modern state of the art Face Recognition solutions leverages graphics processor technologies, GPU, 
-which has dramatically improved over the decades. (In particular, Nvidia released the CUDA framework which allowed C and C++ applications to utilize the GPU for massive parallel computing.)
-It utilizes Deep Learning (aka Neural Networks) which requires GPU power to perform massive compute operations in parallel. 
-Deep Learning is one approach to Artificial Intelligence that simulates how the brain functions by teaching software through examples, several examples (big data), instead of harcoding the logic rules and decision trees in the software. 
-(One important contribution in Deep Learning is the creation of ImageNet dataset. It pioneered the creation of millions of images, a big data collection of images that were labelled and classified to teach computer for image classifications.) 
-Neural networks are basically layers of nodes where each nodes are connected to nodes in the next layer feeding information. 
-Deepnets are very deep neural networks with several layers made possible using GPU compute power. 
-Many neural networks topologies exists such as Convolutional Neural Networks (CNN) architecture 
-which particulary applies to Computer Vision, from image classification to face recognition.
-</p>
-
-
 # Introduction:
 
-<p>
-    
 A facial recognition system is a technology capable of identifying or verifying a person from a digital image or a video frame from a video source. At a minimum, a simple real-time facial recognition system is composed of the following pipeline:
 
-0. <b>Face Enrollment.</b> Registering faces to a database which includes pre-computing the face embeddings and training a classifier on top of the face embeddings of registered individuals. 
-1. <b>Face Capture.</b> Reading a frame image from a camera source.
-2. <b>Face Detection.</b> Detecting faces in a frame image.
-3. <b>Face Encoding/Embedding.</b> Generating a mathematical representation of each face (coined as embedding) in the frame image.
-4. <b>Face Identification.</b> Infering each face embedding in an image with face embeddings of known people in a database.
+Face Enrollment.
+Registering faces to a database which includes pre-computing the face embeddings and training a classifier on top of the face embeddings of registered individuals. 
+Face Capture.
+Reading a frame image from a camera source.
+Face Detection.
+Detecting faces in a frame image.
+Face Encoding/Embedding.
+Generating a mathematical representation of each face (coined as embedding) in the frame image.
+Face Identification.
+Infering each face embedding in an image with face embeddings of known people in a database.
 
-More complex systems include features such as <b>Face Liveness Detection</b> (to counter spoofing attacks via photo, video or 3d mask), face alignment, <b>face augmentation</b> (to increase the number of dataset of images) and face verification (to confirm prediction by comparing cosine similarity or euclidean distance with each database embedding).
-</p>
-
-
-# Problem:
-
-<p>
-libfaceid democratizes learning Face Recognition. Popular models such as FaceNet and OpenFace are not straightforward to use and don't provide easy-to-follow guidelines on how to install and setup. So far, dlib has been the best in terms of documentation and usage but installation is not straightforward, it is slow on CPU and is highly abstracted (abstracts OpenCV as well). Simple models such as OpenCV is good but too basic and lacks documentation of the parameter settings, on classification algorithms and end-to-end pipeline. Pyimagesearch has been great having several tutorials with easy to understand explanations but not much emphasis on model comparisons and seems to aim to sell books so intentions to help the community are not so pure after all (I hate the fact that you need to wait for 2 marketing emails to arrive just to download the source code for the tutorials. But I love the fact that he replies to all questions in the threads). With all this said, I've learned a lot from all these resources so I'm sure you will learn a lot too. 
-
-libfaceid was created to somehow address these problems and fill-in the gaps from these resources. It seamlessly integrates multiple models for each step of the pipeline enabling anybody specially beginners in Computer Vision and Deep Learning to easily learn and experiment with a comprehensive face recognition end-to-end pipeline models. No strings attached. Once you have experimented will all the models and have chosen specific models for your specific use-case and system requirements, you can explore the more advanced models like FaceNet.
-
-</p>
-
-
-# Design:
-
-<p>
-libfaceid is designed so that it is easy to use, modular and robust. Selection of model is done via the constructors while the expose function is simply detect() or estimate() making usage very easy. The files are organized into modules so it is very intuitive to understand and debug. The robust design allows supporting new models in the future to be very straightforward.
-
-Only pretrained models will be supported. [Transfer learning](http://cs231n.github.io/transfer-learning/) is the practice of applying a pretrained model (that is trained on a very large dataset) to a new dataset. It basically means that it is able to generalize models from one dataset to another when it has been trained on a very large dataset, such that it is 'experienced' enough to generalize the learnings to new environment to new datasets. It is one of the major factors in the explosion of popularity in Computer Vision, not only for face recognition but most specially for object detection. And just recently, mid-2018 this year, transfer learning has been making good advances to Natural Language Processing ( [BERT by Google](https://github.com/google-research/bert) and [ELMo by Allen Institute](https://allennlp.org/elmo) ). Transfer learning is really useful and it is the main goal that the community working on Reinforcement Learning wants to achieve for robotics.
-</p>
+More complex systems include features such as Face Liveness Detection (to counter spoofing attacks via photo, video or 3d mask), face alignment, face augmentation (to increase the number of dataset of images) and face verification (to confirm prediction by comparing cosine similarity or euclidean distance with each database embedding).
 
 
 # Features:
@@ -142,39 +54,10 @@ libfaceid library supports several models for each step of the Face Recognition 
 - [Mouth Movement](https://github.com/mauckc/mouth-open)
 - [Colorspace Histogram Concatenation](https://github.com/ee09115/spoofing_detection)
 
-### Additional models (bonus features for PR): 
-- TTS Text-To-Speech <b>(speech synthesis)</b> models for voice-enabled capability
-    - [PyTTSX3](https://pypi.org/project/pyttsx3/)
-    - [Tacotron](https://github.com/keithito/tacotron)
-    - [gTTS](https://pypi.org/project/gTTS/)
-- STT Speech-To-Text <b>(speech recognition)</b> models for voice-activated capability
-    - [GoogleCloud](https://pypi.org/project/SpeechRecognition/)
-    - [Wit.ai](https://wit.ai/)
-    - [Houndify](https://www.houndify.com/)
-    - PocketSphinx - TODO
-    - Snoyboy - TODO
-    - Precise - TODO
-- Face Pose estimator models for predicting face landmarks <b>(face landmark detection)</b>
-- Face Age estimator models for predicting age <b>(age detection)</b>
-- Face Gender estimator models for predicting gender <b>(gender detection)</b>
-- Face Emotion estimator models for predicting facial expression <b>(emotion detection)</b>
-
-
-# Compatibility:
-
-<p>
-The library and example applications have been tested on Raspberry Pi 3B+ (Python 3.5.3) and Windows 7 (Python 3.6.6)
-using <b>OpenCV</b> 3.4.3.18, <b>Tensorflow</b> 1.8.0 and <b>Keras</b> 2.0.8. 
-For complete dependencies, refer to requirements.txt. 
-Tested with built-in laptop camera and with a Logitech C922 Full-HD USB webcam.
-
-I encountered DLL issue with OpenCV 3.4.3.18 on my Windows 7 laptop. 
-If you encounter such issue, use OpenCV 3.4.1.15 or 3.3.1.11 instead.
-Also note that opencv-python and opencv-contrib-python must always have the same version.
-</p>
-
-
-# Usage:
+- Face Pose estimator models for predicting face landmarks 
+- Face Age estimator models for predicting age 
+- Face Gender estimator models for predicting gender 
+- Face Emotion estimator models for predicting facial expression 
 
 ### Installation:
 
@@ -224,7 +107,6 @@ Also note that opencv-python and opencv-contrib-python must always have the same
                pip3 install pyaudio
                [Microphone Setup on RPI](https://iotbytes.wordpress.com/connect-configure-and-test-usb-microphone-and-speaker-with-raspberry-pi/)
 
-
 ### Quickstart (Dummy Guide):
 
         1. Add your dataset
@@ -235,107 +117,7 @@ Also note that opencv-python and opencv-contrib-python must always have the same
         3. Test your model
            Update testing_image.bat to specify your chosen models
            Run testing_image.bat
-
-
-### Folder structure:
-
-        libfaceid
-        |
-        |   agegenderemotion_webcam.py
-        |   testing_image.py
-        |   testing_webcam.py
-        |   testing_webcam_livenessdetection.py
-        |   testing_webcam_voiceenabled.py
-        |   testing_webcam_voiceenabled_voiceactivated.py
-        |   training.py
-        |   requirements.txt
-        |   requirements_with_voicecapability.txt
-        |   
-        +---libfaceid
-        |   |   age.py
-        |   |   classifier.py
-        |   |   detector.py
-        |   |   emotion.py
-        |   |   encoder.py
-        |   |   gender.py
-        |   |   liveness.py
-        |   |   pose.py
-        |   |   speech_synthesizer.py
-        |   |   speech_recognizer.py
-        |   |   __init__.py
-        |   |   
-        |   \---tacotron
-        |           
-        +---models
-        |   +---detection
-        |   |       deploy.prototxt
-        |   |       haarcascade_frontalface_default.xml
-        |   |       mmod_human_face_detector.dat
-        |   |       res10_300x300_ssd_iter_140000.caffemodel
-        |   |       
-        |   +---encoding
-        |   |       dlib_face_recognition_resnet_model_v1.dat
-        |   |       facenet_20180402-114759.pb
-        |   |       openface_nn4.small2.v1.t7
-        |   |       shape_predictor_5_face_landmarks.dat
-        |   |           
-        |   +---estimation
-        |   |       age_deploy.prototxt
-        |   |       age_net.caffemodel
-        |   |       emotion_deploy.json
-        |   |       emotion_net.h5
-        |   |       gender_deploy.prototxt
-        |   |       gender_net.caffemodel
-        |   |       shape_predictor_68_face_landmarks.dat
-        |   |       shape_predictor_68_face_landmarks.jpg
-        |   |               
-        |   +---liveness
-        |   |       colorspace_ycrcbluv_print.pkl
-        |   |       colorspace_ycrcbluv_replay.pkl
-        |   |       shape_predictor_68_face_landmarks.dat
-        |   |               
-        |   +---synthesis
-        |   |   \---tacotron-20180906
-        |   |           model.ckpt.data-00000-of-00001
-        |   |           model.ckpt.index
-        |   |           
-        |   \---training // This is generated during training (ex. facial_recognition_training.py)
-        |           dlib_le.pickle
-        |           dlib_re.pickle
-        |           facenet_le.pickle
-        |           facenet_re.pickle
-        |           lbph.yml
-        |           lbph_le.pickle
-        |           openface_le.pickle
-        |           openface_re.pickle
-        |
-        +---audiosets // This is generated during training (ex. facial_recognition_training.py)
-        |       Person1.wav or Person1.mp3
-        |       Person2.wav or Person2.mp3
-        |       Person3.wav or Person3.mp3
-        |       
-        +---datasets // This is generated by user
-        |   +---Person1
-        |   |       1.jpg
-        |   |       2.jpg
-        |   |       ...
-        |   |       X.jpg
-        |   |       
-        |   +---Person2
-        |   |       1.jpg
-        |   |       2.jpg
-        |   |       ...
-        |   |       X.jpg
-        |   |       
-        |   \---Person3
-        |           1.jpg
-        |           2.jpg
-        |           ...
-        |           X.jpg
-        |           
-        \---templates
-
-
+           
 ### Pre-requisites:
 
         1. Add the dataset of images under the datasets directory
@@ -358,8 +140,6 @@ Also note that opencv-python and opencv-contrib-python must always have the same
         encoder models:            0-LBPH, 1-OPENFACE, 2-DLIBRESNET, 3-FACENET
         classifier algorithms:     0-NAIVE_BAYES, 1-LINEAR_SVM, 2-RBF_SVM, 3-NEAREST_NEIGHBORS, 4-DECISION_TREE, 5-RANDOM_FOREST, 6-NEURAL_NET, 7-ADABOOST, 8-QDA
         liveness models:           0-EYESBLINK_MOUTHOPEN, 1-COLORSPACE_YCRCBLUV
-        speech synthesizer models: 0-TTSX3, 1-TACOTRON, 2-GOOGLECLOUD
-        speech recognition models: 0-GOOGLECLOUD, 1-WITAI, 2-HOUNDIFY
         camera resolution:         0-QVGA, 1-VGA, 2-HD, 3-FULLHD
 
         1. Training with datasets
@@ -377,11 +157,7 @@ Also note that opencv-python and opencv-contrib-python must always have the same
         4. Testing with a webcam with anti-spoofing attacks
             Usage: python testing_webcam_livenessdetection.py --detector 0 --encoder 0 --liveness 0 --webcam 0 --resolution 0
 
-        5. Testing with voice-control
-            Usage: python testing_webcam_voiceenabled.py --detector 0 --encoder 0 --speech_synthesizer 0 --webcam 0 
-            Usage: python testing_webcam_voiceenabled_voiceactivated.py --detector 0 --encoder 0 --speech_synthesizer 0 --speech_recognition 0 --webcam 0 --resolution 0
-
-        6. Testing age/gender/emotion detection
+        5. Testing age/gender/emotion detection
             Usage: python agegenderemotion_webcam.py --detector 0 --webcam 0 --resolution 0
             Usage: python agegenderemotion_webcam_flask.py
                    Then open browser and type http://127.0.0.1:5000 or http://ip_address:5000
@@ -401,14 +177,6 @@ Also note that opencv-python and opencv-contrib-python must always have the same
         face_detector = FaceDetector(model=FaceDetectorModels.DEFAULT, path=INPUT_DIR_MODEL_DETECTION)
         face_encoder = FaceEncoder(model=FaceEncoderModels.DEFAULT, path=INPUT_DIR_MODEL_ENCODING, path_training=INPUT_DIR_MODEL_TRAINING, training=True)
         face_encoder.train(face_detector, path_dataset=INPUT_DIR_DATASET, verify=verify, classifier=FaceClassifierModels.NAIVE_BAYES)
-
-        // generate audio samples for image datasets using text to speech synthesizer
-        OUTPUT_DIR_AUDIOSET       = "audiosets/"
-        INPUT_DIR_MODEL_SYNTHESIS = "models/synthesis/"
-        from libfaceid.speech_synthesizer import SpeechSynthesizerModels, SpeechSynthesizer
-        speech_synthesizer = SpeechSynthesizer(model=SpeechSynthesizerModels.DEFAULT, path=INPUT_DIR_MODEL_SYNTHESIS, path_output=OUTPUT_DIR_AUDIOSET)
-        speech_synthesizer.synthesize_datasets(INPUT_DIR_DATASET)
-
 
 ### Face Recognition on images:
 
@@ -514,91 +282,6 @@ Also note that opencv-python and opencv-contrib-python must always have the same
         cv2.destroyAllWindows()
 
 
-### Voice-Enabled Real-Time Face Recognition (w/a webcam):
-
-        import cv2
-        from libfaceid.detector import FaceDetectorModels, FaceDetector
-        from libfaceid.encoder  import FaceEncoderModels, FaceEncoder
-        from libfaceid.speech_synthesizer import SpeechSynthesizerModels, SpeechSynthesizer
-
-        INPUT_DIR_MODEL_DETECTION = "models/detection/"
-        INPUT_DIR_MODEL_ENCODING  = "models/encoding/"
-        INPUT_DIR_MODEL_TRAINING  = "models/training/"
-        INPUT_DIR_AUDIOSET        = "audiosets"
-
-        camera = cv2.VideoCapture(webcam_index)
-        face_detector = FaceDetector(model=FaceDetectorModels.DEFAULT, path=INPUT_DIR_MODEL_DETECTION)
-        face_encoder = FaceEncoder(model=FaceEncoderModels.DEFAULT, path=INPUT_DIR_MODEL_ENCODING, path_training=INPUT_DIR_MODEL_TRAINING, training=False)
-        speech_synthesizer = SpeechSynthesizer(model=SpeechSynthesizerModels.DEFAULT, path=None, path_output=None, training=False)
-
-        frame_count = 0
-        while True:
-            frame = camera.read()
-            faces = face_detector.detect(frame)
-            for (index, face) in enumerate(faces):
-                face_id, confidence = face_encoder.identify(frame, face)
-                label_face(frame, face, face_id, confidence)
-                if (frame_count % 120 == 0):
-                    // Speak the person's name
-                    speech_synthesizer.playaudio(INPUT_DIR_AUDIOSET, face_id, block=False)
-            cv2.imshow(window_name, frame)
-            cv2.waitKey(1)
-            frame_count += 1
-
-        camera.release()
-        cv2.destroyAllWindows()
-
-
-### Voice-Activated and Voice-Enabled Real-Time Face Recognition (w/a webcam):
-
-        import cv2
-        from libfaceid.detector import FaceDetectorModels, FaceDetector
-        from libfaceid.encoder  import FaceEncoderModels, FaceEncoder
-        from libfaceid.speech_synthesizer import SpeechSynthesizerModels, SpeechSynthesizer
-        from libfaceid.speech_recognizer  import SpeechRecognizerModels,  SpeechRecognizer
-
-        trigger_word_detected = False
-        def speech_recognizer_callback(word):
-            print("Trigger word detected! '{}'".format(word))
-            trigger_word_detected = True
-
-        INPUT_DIR_MODEL_DETECTION = "models/detection/"
-        INPUT_DIR_MODEL_ENCODING  = "models/encoding/"
-        INPUT_DIR_MODEL_TRAINING  = "models/training/"
-        INPUT_DIR_AUDIOSET        = "audiosets"
-
-        camera = cv2.VideoCapture(webcam_index)
-        face_detector = FaceDetector(model=FaceDetectorModels.DEFAULT, path=INPUT_DIR_MODEL_DETECTION)
-        face_encoder  = FaceEncoder(model=FaceEncoderModels.DEFAULT, path=INPUT_DIR_MODEL_ENCODING, path_training=INPUT_DIR_MODEL_TRAINING, training=False)
-        speech_synthesizer = SpeechSynthesizer(model=SpeechSynthesizerModels.DEFAULT, path=None, path_output=None, training=False)
-        speech_recognizer  = SpeechRecognizer(model=SpeechRecognizerModels.DEFAULT, path=None)
-
-        // Wait for trigger word/wake word/hot word before starting face recognition
-        TRIGGER_WORDS = ["Hey Google", "Alexa", "Activate", "Open Sesame"]
-        print("\nWaiting for a trigger word: {}".format(TRIGGER_WORDS))
-        speech_recognizer.start(TRIGGER_WORDS, speech_recognizer_callback)
-        while (trigger_word_detected == False):
-            time.sleep(1)
-        speech_recognizer.stop()
-
-        // Start face recognition
-        frame_count = 0
-        while True:
-            frame = camera.read()
-            faces = face_detector.detect(frame)
-            for (index, face) in enumerate(faces):
-                face_id, confidence = face_encoder.identify(frame, face)
-                label_face(frame, face, face_id, confidence)
-                if (frame_count % 120 == 0):
-                    // Speak the person's name
-                    speech_synthesizer.playaudio(INPUT_DIR_AUDIOSET, face_id, block=False)
-            cv2.imshow(window_name, frame)
-            cv2.waitKey(1)
-            frame_count += 1
-
-        camera.release()
-        cv2.destroyAllWindows()
-
 
 ### Real-Time Face Pose/Age/Gender/Emotion Estimation (w/a webcam):
 
@@ -636,16 +319,6 @@ Also note that opencv-python and opencv-contrib-python must always have the same
 
         camera.release()
         cv2.destroyAllWindows()
-
-
-
-# Case Study - Face Recognition for Identity Authentication:
-
-One of the use cases of face recognition is for security identity authentication.
-This is a convenience feature to authenticate with system using one's face instead of inputting passcode or scanning fingerprint. Passcode is often limited by the maximum number of digits allowed while fingerprint scanning often has problems with wet fingers or dry skin. Face authentication offers a more reliable and secure way to authenticate.
-
-When used for identity authentication, face recognition specifications will differ a lot from general face recognition systems like Facebook's automated tagging and Google's search engine; it will be more like Apple's Face ID in IPhone X. Below are guidelines for drafting specifications for your face recognition solution. Note that [Apple's Face ID technology](https://support.apple.com/en-us/HT208109) will be used as the primary baseline in this case study of identity authentication use case of face recognition. Refer to this [Apple's Face ID white paper](https://www.apple.com/business/site/docs/FaceID_Security_Guide.pdf) for more information.
-
 
 ### Face Enrollment
 
@@ -691,29 +364,6 @@ Only the mathematical representations (128-dimensional vector) of the face shoul
 
 In addition to these guidelines, the face recognition solution should provide a way to disable/enable this feature as well as resetting the stored datasets during face enrollment.
 
-
-
-# Case Study - Face Recognition for Home/Office/Hotel Greeting System:
-
-One of the use cases of face recognition is for greeting system used in smart homes, office and hotels.
-To enable voice capability feature, we use text-to-speech synthesis to dynamically create audio files given some input text. 
-
-### Speech Synthesis
-
-Speech synthesis is the artificial simulation of human speech by a computer device.
-It is mostly used for translating text into audio to make the system voice-enabled.
-Products such as Apple's Siri, Microsoft's Cortana, Amazon Echo and Google Assistant uses speech synthesis.
-A good speech synthesizer is one that produces accurate outputs that naturally sounds like a real human in near real-time.
-State-of-the-art speech synthesis includes [Deepmind's WaveNet](https://deepmind.com/blog/wavenet-generative-model-raw-audio/) 
-and [Google's Tacotron](https://www.isca-speech.org/archive/Interspeech_2017/abstracts/1452.html).
-
-Speech Synthesis can be used for some use-cases of Face Recognition to enable voice capability feature.
-One example is to greet user as he approaches the terminal or kiosk system.
-Given some input text, the speech synthesizer can generate an audio which can be played upon recognizing a face.
-For example, upon detecting person arrival, it can be set to say 'Hello PersonX, welcome back...'. 
-Upon departure, it can be set to say 'Goodbye PersonX, see you again soon...'.
-It can be used in smart homes, office lobbies, luxury hotel rooms, and modern airports. 
-
 ### Face Enrollment
 
 - For each person who registers/enrolls to the system, create an audio file "PersonX.wav" for some input text such as "Hello PersonX".
@@ -753,15 +403,5 @@ Below are links to valuable resoures. Special thanks to all of these guys for sh
 - [OpenFace (FaceNet implementation) by Satyanarayanan](https://github.com/cmusatyalab/openface)
 - [VGG-Face implementation by Refik Can Malli](https://github.com/rcmalli/keras-vggface)
 
-Google and Facebook have access to large database of pictures being the best search engine and social media platform, respectively. Below are the face recognition models they have designed for their own system. Be sure to take time to read these papers for better understanding of high-quality face recognition models. 
-
-### Papers
-- [FaceNet paper by Google](https://arxiv.org/pdf/1503.03832.pdf)
-- [DeepFace paper by Facebook](https://research.fb.com/wp-content/uploads/2016/11/deepface-closing-the-gap-to-human-level-performance-in-face-verification.pdf)
 
 
-
-# Contribute:
-
-Have a good idea for improving libfaceid? Please message me in [twitter](https://twitter.com/richmond_umagat).
-If libfaceid has helped you in learning or prototyping face recognition system, please be kind enough to give this repository a 'Star'.
