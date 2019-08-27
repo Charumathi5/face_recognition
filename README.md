@@ -39,7 +39,7 @@ libfaceid library supports several models for each step of the Face Recognition 
 - [OpenFace via Torch and Lua](https://github.com/cmusatyalab/openface) - TODO
 
 ### Classification algorithms for Face Identification using face embeddings
-- [Naïve Bayes](https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/)
+- [Naïve Bayes]
 - Linear SVM
 - RVF SVM
 - Nearest Neighbors
