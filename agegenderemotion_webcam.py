@@ -1,3 +1,4 @@
+# libraries
 import sys
 import argparse
 import cv2
@@ -161,7 +162,7 @@ def main(args):
 
     if args.detector:
         try:
-            detector = FaceDetectorModels(int(args.detector))
+            detector = FaceDetectorModels(int(args.detector))taxanomy
             print( "Parameters: {}".format(detector) )
             process_facedetection(
                 detector, 
@@ -187,6 +188,7 @@ def parse_arguments(argv):
         help='Camera resolution to use. Default is 0. Options: 0-QVGA, 1-VGA, 2-HD, 3-FULLHD')
     return parser.parse_args(argv)
 
-
+# Main function
 if __name__ == '__main__':
     main(parse_arguments(sys.argv[1:]))
+ # end
