@@ -1,12 +1,11 @@
+# libraries
 import os
 import sys
 import argparse
 from libfaceid.detector import FaceDetectorModels, FaceDetector
 from libfaceid.encoder  import FaceEncoderModels, FaceEncoder
 from libfaceid.classifier  import FaceClassifierModels
-
-
-
+# start
 INPUT_DIR_DATASET         = "datasets"
 INPUT_DIR_MODEL_DETECTION = "models/detection/"
 INPUT_DIR_MODEL_ENCODING  = "models/encoding/"
@@ -119,7 +118,7 @@ def parse_arguments(argv):
     parser.add_argument('--speech_synthesizer', required=False, default=0,
         help='Speech synthesizier algorithm to use. Options: 0-TTSX3, 1-TACOTRON, 2-GOOGLECLOUD')
     return parser.parse_args(argv)
-
-
+# main
 if __name__ == '__main__':
     main(parse_arguments(sys.argv[1:]))
+humain
